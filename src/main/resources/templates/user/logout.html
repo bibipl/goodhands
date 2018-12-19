@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<body>
+
+<h1 th:inline="text">Witaj w panelu</h1>
+<p sec:authorize="isAuthenticated()">
+<p>Zalogowany jako: <span sec:authentication="name"></span></p>
+<p>Posiada role: <span sec:authentication="authorities"></span></p>
+</p>
+<span sec:authorize="isAuthenticated()">
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Wyloguj"/>
+</form>
+</span>
+</body>
+</html>
