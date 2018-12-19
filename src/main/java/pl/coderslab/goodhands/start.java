@@ -3,9 +3,7 @@ package pl.coderslab.goodhands;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import pl.coderslab.goodhands.role.Role;
 import pl.coderslab.goodhands.role.RoleService;
-import pl.coderslab.goodhands.user.User;
 import pl.coderslab.goodhands.user.UserService;
 
 @Controller

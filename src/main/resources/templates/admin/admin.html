@@ -9,8 +9,8 @@
 <body>
 <h1>JESTEM ADMIN !!!!</h1>
 <p sec:authorize="isAuthenticated()">
-<p>Zalogowany jako: <span sec:authentication="name"></span></p>
-<p>Posiada role: <span sec:authentication="authorities"></span></p>
+<p>Zalogowany jako: <span sec:authentication="username"></span></p>
+<p>Posiada role: <span sec:authentication="id"></span></p>
 </p>
 </body>
 </html>
