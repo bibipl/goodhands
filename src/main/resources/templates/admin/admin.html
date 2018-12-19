@@ -1,16 +1,22 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+<html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
-<html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <title>admin</title>
+    <title>Security</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
 </head>
 <body>
-<h1>JESTEM ADMIN !!!!</h1>
-<p sec:authorize="isAuthenticated()">
-<p>Zalogowany jako: <span sec:authentication="username"></span></p>
-<p>Posiada role: <span sec:authentication="id"></span></p>
-</p>
+    <h1>JESTEM ADMIN !!!!</h1>
+    <h2 th:text="|Mój id to: ${currentUser.id}|" ></h2>
+    <h2 th:text="|Nazwa użytkownika: ${currentUser.username}|" ></h2>
+    <h3></h3>
+    <h2 th:text="|Aktywność (0/1): ${currentUser.enabled}|" ></h2>
+    <h2>role:</h2>
+    <ul>
+        <li th:each="role: ${currentUser.roles}" th:text="${role.name}"></li>
+    </ul>
+    <a th:href="@{/}" class="btn btn-info">MENU</a>
 </body>
 </html>

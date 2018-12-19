@@ -1,16 +1,23 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Security</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>
 <body>
+<h2 th:text="|ID: ${currentUser.id}|" ></h2>
+<h2 th:text="|NAZWA: ${currentUser.username}|" ></h2>
+<h3></h3>
+<h2 th:text="|STATUS: (0/1): ${currentUser.enabled}|" ></h2>
+<h2>UPRAWNIENIA</h2>
+<ul>
+    <li th:each="role: ${currentUser.roles}" th:text="${role.name}"></li>
+</ul>
 
-<h1 th:inline="text">Witaj w panelu</h1>
-<p sec:authorize="isAuthenticated()">
-<p>Zalogowany jako: <span sec:authentication="name"></span></p>
-<p>Posiada role: <span sec:authentication="authorities"></span></p>
-</p>
-<span sec:authorize="isAuthenticated()">
 <form th:action="@{/logout}" method="post">
-    <input type="submit" value="Wyloguj"/>
+    <input type="submit" class="btn btn-info" value="Wyloguj"/>
 </form>
 </span>
 </body>

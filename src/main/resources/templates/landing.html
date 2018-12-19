@@ -3,16 +3,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8">
-    <title>start</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/my.css}" rel="stylesheet"/>
 </head>
 <body>
-
-<a th:href="@{/login}">Logowanie</a>
-<a th:href="@{/register}">Rejestracja</a>
-<a th:href="@{/logout}">Wylogowanie</a>
-<a th:href="@{/admin}">Admin</a>
-<a th:href="@{/user}">User</a>
+<p th:if="${currentUser}" class="btn btn-info" th:text="'Jesteś zalogowany jako: ' + ${currentUser.username}"></p>
+<p th:unless="${currentUser}" class="btn btn-info" th:text="'Nie jesteś zalogowany'"></p>
+<br>
+<a th:href="@{/login}" class="btn btn-light">Logowanie</a>
+<a th:href="@{/register}" class="btn btn-dark">Rejestracja</a>
+<a th:href="@{/logout}" class="btn btn-danger">Wylogowanie</a>
+<a th:href="@{/admin}" class="btn btn-success">Admin</a>
+<a th:href="@{/user}" class="btn btn-info">User</a>
 
 </body>
 </html>

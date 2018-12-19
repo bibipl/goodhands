@@ -2,15 +2,16 @@ package pl.coderslab.goodhands.user;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class UserController {
     @GetMapping("/user")
-    @ResponseBody
-    public String iAmUser (@AuthenticationPrincipal CurrentUser customUser) {
+    public String iAmUser (@AuthenticationPrincipal CurrentUser customUser, Model model) {
         User entityUser = customUser.getUser();
-        return "this is user name " + entityUser.getUsername();
+        model.addAttribute("currentUser", entityUser);
+        return "user/user";
     }
+
 }
