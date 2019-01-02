@@ -7,16 +7,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
     <link th:href="@{/css/my.css}" rel="stylesheet"/>
+
 </head>
-<body>
-<p th:if="${currentUser}" class="btn btn-info" th:text="'Jesteś zalogowany jako: ' + ${currentUser.username}"></p>
-<p th:unless="${currentUser}" class="btn btn-info" th:text="'Nie jesteś zalogowany'"></p>
-<br>
-<a th:href="@{/login}" class="btn btn-light">Logowanie</a>
-<a th:href="@{/register}" class="btn btn-dark">Rejestracja</a>
-<a th:href="@{/logout}" class="btn btn-danger">Wylogowanie</a>
-<a th:href="@{/admin}" class="btn btn-success">Admin</a>
-<a th:href="@{/user}" class="btn btn-info">User</a>
+
+<body class="start">
+<!--<p th:if="${currentUser}" class="btn btn-info" th:text="'Jesteś zalogowany jako: ' + ${currentUser.username}"></p>
+<p th:unless="${currentUser}" class="btn btn-info" th:text="'Nie jesteś zalogowany'"></p>-->
+<table class="usermenutable">
+    <tr>
+        <td class="usermenu70"></td>
+        <td class="usermenu20">
+            <a th:href="@{/login}" class="btn btn-success">Zaloguj</a>
+            <a th:href="@{/register}" class="btn btn-primary">Załóż konto</a>
+        </td>
+        <td class="usermenu10"></td>
+    </tr>
+</table>
+<table class="usermenutable">
+    <tr>
+        <td class="usermenu60"></td>
+        <td class="usermenu30">
+            <a th:href="@{/}" class="btn btn-secondary">Start</a>
+            <a th:href="@{/}" class="btn btn-secondary">O co chodzi</a>
+            <a th:href="@{/}" class="btn btn-secondary">O nas</a>
+            <a th:href="@{/}" class="btn btn-secondary">Fundacje i organizacje</a>
+            <a th:href="@{/}" class="btn btn-secondary">Kontakt</a>
+        </td>
+        <td class="usermenu10"></td>
+    </tr>
+</table>
+
+
+</table>
+<!--<a th:href="@{/logout}" class="btn btn-danger">Wylogowanie</a>
+<a th:href="@{/admin/}" class="btn btn-success">Admin</a>
+<a th:href="@{/user}" class="btn btn-info">User</a>-->
 
 </body>
 </html>

@@ -14,4 +14,10 @@ public class UserController {
         return "user/user";
     }
 
+    @GetMapping("/user/edit")
+    public String editUser (@AuthenticationPrincipal CurrentUser customUser, Model model) {
+        User entityUser = customUser.getUser();
+
+        return "user/user";
+    }
 }

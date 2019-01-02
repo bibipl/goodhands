@@ -1,22 +1,155 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" xmlns="http://www.w3.org/1999/html">
 <head>
     <title>Security</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/my.css}" rel="stylesheet"/>
 </head>
-<body>
-    <h1>JESTEM ADMIN !!!!</h1>
-    <h2 th:text="|Mój id to: ${currentUser.id}|" ></h2>
-    <h2 th:text="|Nazwa użytkownika: ${currentUser.username}|" ></h2>
-    <h3></h3>
-    <h2 th:text="|Aktywność (0/1): ${currentUser.enabled}|" ></h2>
-    <h2>role:</h2>
-    <ul>
-        <li th:each="role: ${currentUser.roles}" th:text="${role.name}"></li>
-    </ul>
-    <a th:href="@{/}" class="btn btn-info">MENU</a>
+<body class="logged">
+<br/><br/>
+<div class="container">
+    <table class="usermenutable">
+        <tr>
+            <td style="width: 60%">
+                        <span>
+                            <a class="btn btn-info usermenu"  th:href="@{'/admin'}">
+                               STRONA GŁÓWNA ADMINA
+                            </a>
+                        </span>
+            </td>
+            <td style="width: 30%">
+                        <span>
+                            <a class="btn btn-warning usermenu"  th:href="@{'/user'}">
+                               MOJA STRONA USER
+                            </a>
+                        </span>
+            </td>
+            <td style="width: 10%">
+                <span>
+                    <form th:action="@{/logout}" method="post" >
+                        <input class="btn btn-danger usermenu" type="submit" value="WYLOGUJ"/>
+                    </form>
+                </span>
+            </td>
+        </tr>
+    </table>
+    <table class="usermenutable">
+                <tr>
+                    <td class="usermenutd4">
+                        <span>
+                            <a class="btn btn-secondary usermenu"  th:href="@{|/admin/roles/ROLE_ADMIN|}">
+                                ADMINISTRATORZY
+                            </a>
+                        </span>
+                    </td>
+                    <td class="usermenutd4">
+                        <span>
+                            <a class="btn btn-secondary usermenu" th:href="@{|/admin/roles/ROLE_USER|} ">
+                                UŻYTKOWNICY
+                            </a>
+                        </span>
+                    </td>
+                    <td class="usermenutd4">
+                        <span>
+                            <a class="btn btn-secondary usermenu" th:href="@{'/'} ">
+                                INSTYTUCJE
+                            </a>
+                        </span>
+                    </td>
+                    <td class="usermenutd4">
+                        <span>
+                            <a class="btn btn-secondary usermenu" th:href="@{'/'} ">
+                                DARY
+                            </a>
+                        </span>
+                    </td>
+                </tr>
+        </table>
+    <div class="alert alert-primary" role="alert">
+        <h1 style="align-self: center"
+            th:text="'PANEL ADMINISTRATORA ' + '(id:' + ${currentUser.id} + ') '+${currentUser.username}">
+        </h1>
+    </div>
+    <div class="alert alert-secondary" role="alert">
+        <div th:switch="${currentUser.enabled}">
+            <p th:case="'1'">Aktywny</p>
+            <p th:case="'0'">Nieaktywny</p>
+        </div>
+        <ul>
+            <li th:each="role: ${currentUser.roles}" th:text="${role.name}"></li>
+        </ul>
+    </div>
+    <div class="alert alert-success" role="alert" th:if="${UA}">
+        <div th:switch="${UA}">
+            <h3 th:case="'ROLE_USER'">LISTA UŻYTKOWNIKÓW</h3>
+            <h3 th:case="'ROLE_ADMIN'">LISTA ADMINISTRATORÓW</h3>
+            <h3 th:case="*"></h3>
+        </div>
+        <table class="usermenutable">
+            <thead>
+                <tr>
+                    <th class="usertd4">NAZWA</th>
+                    <th class="usertd8">STATUS</th>
+                    <th class="usertd8">STATUS AKCJA</th>
+                    <th class="usertd8">ADMIN</th>
+                    <th class="usertd8">ADMIN AKCJA</th>
+                    <th class="usertd16">EDYCJA</th>
+                </tr>
+            </thead>
+            <th:block th:each="usr : ${users}">
+                <tr>
+                    <td class="usertd4" th:text="${usr.username}"></td>
+                    <td class="usertd8">
+                        <span class="yesUser" th:if="${usr.enabled}">AKTYWNY</span>
+                        <span class="notUser" th:unless="${usr.enabled}">NIEAKTYWNY</span>
+                    </td>
+                    <td class="usertd8">
+                        <span th:if="${usr.enabled} =='1' and ${not usr.isAdmin}"><a class="btn btn-danger" th:href="@{|/admin/userStatus/${usr.id}|}">ZABLOKUJ</a></span>
+                        <span th:if="${usr.enabled} == '0' and ${not usr.isAdmin}"><a class="btn btn-success" th:href="@{|/admin/userStatus/${usr.id}|}">AKTYWUJ</a></span>
+                        <span th:if="${usr.isAdmin}"></span>
+                    </td>
+                    <td class="usertd8">
+                        <span class="yesUser" th:if="${usr.isAdmin}">TAK</span>
+                        <span class="notUser" th:unless="${usr.isAdmin}">NIE</span>
+                    </td>
+                    <td class="usertd8">
+                        <span th:if="${usr.isAdmin}"><a class="btn btn-danger" th:href="@{|/admin/adminStatus/${usr.id}|}">ZABLOKUJ</a></span>
+                        <span th:unless="${usr.isAdmin}"><a class="btn btn-success" th:href="@{|/admin/adminStatus/${usr.id}|}">AKTYWUJ</a></span>
+                    </td>
+                    <td class="usertd16"><a class="btn btn-info" th:href="@{'/'}">EDYCJA</a></td>
+                </tr>
+            </th:block>
+        </table>
+    </div>
+    <br/>
+    <table class="usermenutable">
+        <tr>
+            <td style="width: 60%">
+                        <span>
+                            <a class="btn btn-info usermenu"  th:href="@{'/admin'}">
+                               STRONA GŁÓWNA ADMINA
+                            </a>
+                        </span>
+            </td>
+            <td style="width: 30%">
+                        <span>
+                            <a class="btn btn-warning usermenu"  th:href="@{'/user'}">
+                               MOJA STRONA USER
+                            </a>
+                        </span>
+            </td>
+            <td style="width: 10%">
+                <span>
+                    <form th:action="@{/logout}" method="post" >
+                        <input class="btn btn-danger usermenu" type="submit" value="WYLOGUJ"/>
+                    </form>
+                </span>
+            </td>
+        </tr>
+    </table>
+</div>
 </body>
 </html>

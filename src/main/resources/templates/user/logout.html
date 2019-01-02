@@ -2,23 +2,31 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Security</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/my.css}" rel="stylesheet"/>
 </head>
-<body>
-<h2 th:text="|ID: ${currentUser.id}|" ></h2>
-<h2 th:text="|NAZWA: ${currentUser.username}|" ></h2>
-<h3></h3>
-<h2 th:text="|STATUS: (0/1): ${currentUser.enabled}|" ></h2>
-<h2>UPRAWNIENIA</h2>
-<ul>
-    <li th:each="role: ${currentUser.roles}" th:text="${role.name}"></li>
-</ul>
+<body class="logged">
+<div class="container">
+    <a th:href="@{/}" class="btn btn-info" style="width: 100%">STRONA GŁÓWNA</a>
+    <br/><br/>
+    <div class="alert alert-secondary" role="alert">
+        <h2 th:text="|ID: ${currentUser.id}|"></h2>
+        <h2 th:text="|NAZWA: ${currentUser.username}|"></h2>
+        <h3></h3>
+        <h2 th:text="|STATUS: (0/1): ${currentUser.enabled}|"></h2>
+        <h2>UPRAWNIENIA</h2>
+        <ul>
+            <li th:each="role: ${currentUser.roles}" th:text="${role.name}"></li>
+        </ul>
+    </div>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" class="btn btn-warning" style="width: 100%" value="Wyloguj"/>
+    </form>
+</div>
 
-<form th:action="@{/logout}" method="post">
-    <input type="submit" class="btn btn-info" value="Wyloguj"/>
-</form>
 </span>
+</div>
 </body>
 </html>

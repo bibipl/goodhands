@@ -5,6 +5,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import pl.coderslab.goodhands.role.Role;
 import pl.coderslab.goodhands.role.RoleService;
 import pl.coderslab.goodhands.user.CurrentUser;
 import pl.coderslab.goodhands.user.User;
@@ -25,12 +26,24 @@ public class start {
         if (customUser != null) {
             User entityUser = customUser.getUser();
             model.addAttribute("currentUser", entityUser);
+            boolean admin = false;
+            for (Role role : entityUser.getRoles()) {
+                if (role.getName().equals("ROLE_ADMIN")) {
+                    admin = true;
+                    break;
+                }
+            }
+            if (admin) return "redirect:/admin";
+            return "redirect:/user";
         }
         return "landing";
     }
 }
 
-/* //set admin
+
+
+/* In case we lost admin in database.
+//set admin
         Role role = new Role ();
         Role role1 = new Role ();
         role.setName("ROLE_ADMIN");

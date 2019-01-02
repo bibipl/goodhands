@@ -7,17 +7,87 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/my.css}" rel="stylesheet"/>
 </head>
-<body>
-<h1>JESTEM USER !!!!</h1>
-<h2 th:text="|Mój id to: ${currentUser.id}|" ></h2>
-<h2 th:text="|Nazwa użytkownika: ${currentUser.username}|" ></h2>
-<h3></h3>
-<h2 th:text="|Aktywność (0/1): ${currentUser.enabled}|" ></h2>
-<h2>role:</h2>
-<ul>
-    <li th:each="role: ${currentUser.roles}" th:text="${role.name}"></li>
-</ul>
-<a th:href="@{/}" class="btn btn-info">MENU</a>
+<body class="logged">
+<br/><br/>
+<div class="container">
+
+    <table class="usermenutable">
+        <tr>
+            <td style="width: 80%">
+                        <span>
+                            <a class="btn btn-info usermenu"  th:href="@{'/'}">
+                               MOJA STRONA GŁÓWNA
+                            </a>
+                        </span>
+            </td>
+            <td style="width: 20%">
+                <span>
+                    <form th:action="@{/logout}" method="post" >
+                        <input class="btn btn-danger usermenu" type="submit" value="WYLOGUJ"/>
+                    </form>
+                </span>
+            </td>
+        </tr>
+    </table>
+
+    <table class="usermenutable">
+        <tr>
+            <td class="usermenutd3">
+                    <span>
+                        <a class="btn btn-secondary usermenu"  th:href="@{'/'}">
+                            PROFIL
+                        </a>
+                    </span>
+            </td>
+            <td class="usermenutd3">
+                    <span>
+                        <a class="btn btn-secondary usermenu" th:href="@{'/'} ">
+                            USTAWIENIA
+                        </a>
+                    </span>
+            </td>
+            <td class="usermenutd3">
+                    <span>
+                        <a class="btn btn-secondary usermenu" th:href="@{'/'} ">
+                            MOJE ZBIÓRKI
+                        </a>
+                    </span>
+            </td>
+        </tr>
+    </table>
+
+    <div class="alert alert-primary" role="alert">
+        <div th:switch="${currentUser.enabled}">
+            <p th:case="'1'" th:text="'ZALOGOWANY - ' + ${currentUser.username} + ' - AKTYWNY'"></p>
+            <p th:case="'0'" th:text="'ZALOGOWANY - ' + ${currentUser.username} + ' - NIEAKTYWNY'"></p>
+        </div>
+    </div>
+    <div class="alert alert-secondary" role="alert">
+        <ul>
+            <li th:each="role: ${currentUser.roles}" th:text="${role.name}"></li>
+        </ul>
+    </div>
+    <br/>
+    <table class="usermenutable">
+        <tr>
+            <td style="width: 80%">
+                        <span>
+                            <a class="btn btn-info usermenu"  th:href="@{'/'}">
+                                MOJA STRONA GŁÓWNA
+                            </a>
+                        </span>
+            </td>
+            <td style="width: 20%">
+                <span>
+                    <form th:action="@{/logout}" method="post" >
+                        <input class="btn btn-danger usermenu" type="submit" value="WYLOGUJ"/>
+                    </form>
+                </span>
+            </td>
+        </tr>
+    </table>
+</div>
 </body>
 </html>
