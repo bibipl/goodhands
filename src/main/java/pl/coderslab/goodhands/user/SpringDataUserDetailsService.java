@@ -29,7 +29,6 @@ public class SpringDataUserDetailsService implements UserDetailsService {
             grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
         }
         return new CurrentUser(user.getUsername(), user.getPassword(), grantedAuthorities, user);
-
     }
 
 

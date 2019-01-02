@@ -33,7 +33,7 @@ public class User {
     @Column(name = "email", unique = true)
     private String email;
 
-    private int enabled;
+    private int enabled = 1;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"),
