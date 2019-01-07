@@ -15,10 +15,12 @@
 <p th:unless="${currentUser}" class="btn btn-info" th:text="'Nie jesteś zalogowany'"></p>-->
 <table class="usermenutable">
     <tr>
-        <td class="usermenu70"></td>
-        <td class="usermenu20">
-            <a th:href="@{/login}" class="btn btn-success">Zaloguj</a>
-            <a th:href="@{/register}" class="btn btn-primary">Załóż konto</a>
+        <td class="usermenu60"></td>
+        <td class="usermenu15">
+            <a th:href="@{/login}" class="btn btn-success full">Zaloguj</a>
+        </td>
+        <td class="usermenu10">
+            <a th:href="@{/register}" class="btn btn-primary full">Załóż konto</a>
         </td>
         <td class="usermenu10"></td>
     </tr>

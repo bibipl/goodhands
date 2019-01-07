@@ -12,6 +12,7 @@ import pl.coderslab.goodhands.user.CurrentUser;
 import pl.coderslab.goodhands.user.User;
 import pl.coderslab.goodhands.user.UserService;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -63,8 +64,6 @@ public class AdminController {
     public String admin (@AuthenticationPrincipal CurrentUser customUser, @PathVariable Long id, Model model) {
         User usr = userservice.findById(id);
         if (usr != null) {
-
-
             if (usr.getEnabled() == 0) {
                 usr.setEnabled(1);
             } else {
@@ -96,6 +95,8 @@ public class AdminController {
     @GetMapping("/admin/adminStatus/{id}")
     public String adminStatus (@AuthenticationPrincipal CurrentUser customUser, @PathVariable Long id, Model model) {
         User entityUser = customUser.getUser();
+        entityUser.setIsAdmin(true);
+        entityUser.setIsUser(true);
         User usr = userservice.findById(id);
         List<User> allUsers= userservice.findAll();
         boolean isOnlyOneAdmin = true;
@@ -111,22 +112,25 @@ public class AdminController {
 
         if (usr != null) {
             boolean isAdmin = false;
+            Set<Role> allRoles = new HashSet<>();
             for (Role role : usr.getRoles()) {
                 if (role.getName().equals("ROLE_ADMIN")) {
                     isAdmin = true;
-                    // if we have only one admin - we cannot remove admin role. We cannot add/remove role for self.
-                    if ((!isOnlyOneAdmin) && !(entityUser.getId().equals(usr.getId()))) {
-                        Set<Role> allRoles = usr.getRoles();
-                        allRoles.remove(role);
-                        usr.setRoles(allRoles);
-                        userservice.saveUser(usr);
-                    }
+                } else {
+                    allRoles.add(role);
                 }
+                // if we have only one admin - we cannot remove admin role. We cannot add/remove role for self.
+                if ((!isOnlyOneAdmin) && !(entityUser.getId().equals(usr.getId())) && (isAdmin)) {
+                    usr.setRoles(allRoles);
+                    userservice.saveUser(usr);
+                }
+
             }
             if (!isAdmin) {
                 Role role = roleService.findByName("ROLE_ADMIN");
                 usr.addRole(role);
                 userservice.saveUser(usr);
+                return "redirect:/admin/roles/ROLE_ADMIN";
             }
         }
         return "redirect:/admin/roles/ROLE_USER"; // sows users' list

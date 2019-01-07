@@ -64,10 +64,8 @@ public class LoginController {
 
         if (userCheckEmail == null && userCheckUsername == null) {
             Role role=roleService.findByName("ROLE_USER");
-            Role roleAdm=roleService.findByName("ROLE_ADMIN");
             Set<Role> allRoles = new HashSet<>();
             allRoles.add(role);
-            allRoles.add(roleAdm);
             user.setRoles(allRoles);
             userService.saveUser(user);
             return "redirect:/login";

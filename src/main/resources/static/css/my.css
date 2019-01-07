@@ -77,6 +77,9 @@
 .usermenutable {
     width: 100%;
 }
+.full {
+    width: 100%;
+}
 
 .usermenu80 {
     width:80%;
@@ -100,6 +103,11 @@
     width:20%;
     text-align: right;
 }
+.usermenu15 {
+    width:15%;
+    text-align: right;
+}
+
 .usermenu10 {
     width:10%;
 }

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>USUŃ KONTO</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/my.css}" rel="stylesheet"/>
+</head>
+<body>
+<table class="usermenutable">
+    <tr><td><a th:href="@{/}" class="btn btn-info full">MENU</a></td></tr>
+</table>
+<br/>
+<table class="usermenutable">
+    <tr>
+        <td class="usermenu70">
+            <div class="btn btn-warning full" th:text=" ' \'' + ${user.username} + '\' : ' + 'CZY NA PEWNO CHCESZ SKASOWAĆ SWOJE KONTO ? STRACISZ BEZPOWROTNIE WSZYSTKIE SWOJE DANE !!!'"></div>
+        </td>
+        <td class="usermenu20">
+            <a th:href="@{/user/deleteAction}" class="btn btn-danger full">USUŃ KONTO</a>
+        </td>
+    </tr>
+</table>
+<br/>
+<table class="usermenutable">
+    <tr><td><a th:href="@{/}" class="btn btn-success full">POWRÓT</a></td></tr>
+</table>
+</body>
+</html>

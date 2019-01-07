@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.coderslab.goodhands.role.Role;
 import pl.coderslab.goodhands.role.RoleRepository;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
@@ -46,11 +46,19 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void saveUser(User user) {
-        if (user.getId() == null) {
+        if (user.getId() == null || user.getPassword().equals(user.getPasswordCheck())) {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
-            Role userRole = roleRepository.findByName("ROLE_USER");
-            user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
+            if (user.getRoles() == null) {
+                Role userRole = roleRepository.findByName("ROLE_USER");
+                user.setRoles(new HashSet<Role>(Collections.singletonList(userRole)));
+            }
         }
         userRepository.save(user);
     }
+
+    @Override
+    public void delete(User user) {
+        userRepository.delete(user);
+    }
+
 }
