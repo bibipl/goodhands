@@ -17,10 +17,10 @@
 <table class="usermenutable">
     <tr>
         <td class="usermenu70">
-            <div class="btn btn-warning full" th:text=" ' \'' + ${user.username} + '\' : ' + 'CZY NA PEWNO CHCESZ SKASOWAĆ SWOJE KONTO ? STRACISZ BEZPOWROTNIE WSZYSTKIE SWOJE DANE !!!'"></div>
+            <div class="btn btn-warning full" th:text=" ' \'' + ${user.username} + '\' : ' + 'CZY NA PEWNO CHCESZ SKASOWAĆ KONTO ? STRACISZ BEZPOWROTNIE WSZYSTKIE DANE !!!'"></div>
         </td>
         <td class="usermenu20">
-            <a th:href="@{/user/deleteAction}" class="btn btn-danger full">USUŃ KONTO</a>
+            <a th:href="@{|/user/deleteAction/${user.id}|}" class="btn btn-danger full">USUŃ KONTO</a>
         </td>
     </tr>
 </table>

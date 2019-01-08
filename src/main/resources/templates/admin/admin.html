@@ -119,7 +119,7 @@
                         <span th:if="${usr.isAdmin}"><a class="btn btn-danger" th:href="@{|/admin/adminStatus/${usr.id}|}">ZABLOKUJ</a></span>
                         <span th:unless="${usr.isAdmin}"><a class="btn btn-success" th:href="@{|/admin/adminStatus/${usr.id}|}">AKTYWUJ</a></span>
                     </td>
-                    <td class="usertd16"><a class="btn btn-info" th:href="@{'/'}">EDYCJA</a></td>
+                    <td class="usertd16"><a class="btn btn-info" th:href="@{|/admin/editUser/${usr.id}|}">EDYCJA</a></td>
                 </tr>
             </th:block>
         </table>

@@ -1,8 +1,10 @@
-package pl.coderslab.goodhands.role;
+package pl.coderslab.goodhands.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pl.coderslab.goodhands.Repository.RoleRepository;
+import pl.coderslab.goodhands.role.Role;
 
 @Service
 @Transactional

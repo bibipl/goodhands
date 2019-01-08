@@ -1,4 +1,6 @@
-package pl.coderslab.goodhands.user;
+package pl.coderslab.goodhands.Service;
+
+import pl.coderslab.goodhands.user.User;
 
 import java.util.List;
 

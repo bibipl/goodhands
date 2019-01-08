@@ -1,4 +1,4 @@
-package pl.coderslab.goodhands.admin;
+package pl.coderslab.goodhands.Service;
 
 import pl.coderslab.goodhands.role.Role;
 import pl.coderslab.goodhands.user.User;

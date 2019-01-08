@@ -1,4 +1,4 @@
-package pl.coderslab.goodhands.log;
+package pl.coderslab.goodhands.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.coderslab.goodhands.role.Role;
-import pl.coderslab.goodhands.role.RoleService;
+import pl.coderslab.goodhands.Service.RoleService;
 import pl.coderslab.goodhands.user.CurrentUser;
 import pl.coderslab.goodhands.user.User;
-import pl.coderslab.goodhands.user.UserService;
+import pl.coderslab.goodhands.Service.UserService;
 
 import javax.validation.Valid;
 import java.util.HashSet;

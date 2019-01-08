@@ -1,4 +1,4 @@
-package pl.coderslab.goodhands.admin;
+package pl.coderslab.goodhands.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -6,11 +6,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import pl.coderslab.goodhands.Service.Service;
 import pl.coderslab.goodhands.role.Role;
-import pl.coderslab.goodhands.role.RoleService;
+import pl.coderslab.goodhands.Service.RoleService;
 import pl.coderslab.goodhands.user.CurrentUser;
 import pl.coderslab.goodhands.user.User;
-import pl.coderslab.goodhands.user.UserService;
+import pl.coderslab.goodhands.Service.UserService;
 
 import java.util.HashSet;
 import java.util.List;
@@ -23,6 +24,8 @@ public class AdminController {
     UserService userservice;
     @Autowired
     RoleService roleService;
+    @Autowired
+    UserService userService;
 
     @GetMapping("/admin")
     public String admin (@AuthenticationPrincipal CurrentUser customUser, Model model) {
@@ -134,5 +137,18 @@ public class AdminController {
             }
         }
         return "redirect:/admin/roles/ROLE_USER"; // sows users' list
+    }
+
+    @GetMapping ("/admin/editUser/{id}")
+    public String userEdit (@PathVariable Long id, Model model) {
+        User entityUser = userService.findById(id);
+        model.addAttribute("user", entityUser);
+        return "user/edit";
+    }
+    @GetMapping ("/admin/deleteUser/{id}")
+    public String deleteEdit (@PathVariable Long id, Model model) {
+        User entityUser = userService.findById(id);
+        model.addAttribute("user", entityUser);
+        return "user/delete";
     }
 }

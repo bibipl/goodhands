@@ -6,10 +6,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import pl.coderslab.goodhands.role.Role;
-import pl.coderslab.goodhands.role.RoleService;
+import pl.coderslab.goodhands.Service.RoleService;
 import pl.coderslab.goodhands.user.CurrentUser;
 import pl.coderslab.goodhands.user.User;
-import pl.coderslab.goodhands.user.UserService;
+import pl.coderslab.goodhands.Service.UserService;
 
 @Controller
 public class start {

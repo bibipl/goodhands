@@ -14,7 +14,7 @@
             <a th:href="@{/}" class="btn btn-info full">MENU</a>
         </td>
         <td class="usermenu20">
-            <a th:href="@{/user/delete}" class="btn btn-danger full">USUŃ KONTO</a>
+            <a th:href="@{|/user/delete/${user.id}|}" class="btn btn-danger full">USUŃ KONTO</a>
         </td>
     </tr>
 </table>
