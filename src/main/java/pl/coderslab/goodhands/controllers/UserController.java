@@ -89,9 +89,17 @@ public class UserController {
         boolean theSame = true; // we check we this is delfdestruction or admin action - to return to proper place;
         User entityUser = userService.findById(customUser.getUser().getId());
         if (user.getId() != entityUser.getId()) theSame = false;
-        userService.delete(user);
-        if (!theSame)
-            return "redirect:/admin/roles/ROLE_USER";
+        if (theSame) userService.delete(user);
+        // here someone else tries to delete. We have to know it is admin and we cannot give /admin protection as
+        // user also can removehimself.
+        else  {
+            for (Role role : customUser.getUser().getRoles()) {
+                if (role.equals("ROLE_ADMIN")) {
+                    userService.delete(user);
+                    return "redirect:/admin/roles/ROLE_USER";
+                }
+            }
+        }
         return "landing";
     }
 }

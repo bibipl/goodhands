@@ -3,9 +3,9 @@ package pl.coderslab.goodhands.Service;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.coderslab.goodhands.Repository.UserRepository;
+import pl.coderslab.goodhands.repository.UserRepository;
 import pl.coderslab.goodhands.role.Role;
-import pl.coderslab.goodhands.Repository.RoleRepository;
+import pl.coderslab.goodhands.repository.RoleRepository;
 import pl.coderslab.goodhands.user.User;
 
 import java.util.Collections;

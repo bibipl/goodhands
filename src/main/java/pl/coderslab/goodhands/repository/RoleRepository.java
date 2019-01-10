@@ -1,4 +1,4 @@
-package pl.coderslab.goodhands.Repository;
+package pl.coderslab.goodhands.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import pl.coderslab.goodhands.role.Role;

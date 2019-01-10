@@ -1,4 +1,4 @@
-package pl.coderslab.goodhands.user;
+package pl.coderslab.goodhands.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -6,8 +6,9 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import pl.coderslab.goodhands.Service.UserService;
 import pl.coderslab.goodhands.role.Role;
+import pl.coderslab.goodhands.user.CurrentUser;
+import pl.coderslab.goodhands.user.User;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -31,6 +32,4 @@ public class SpringDataUserDetailsService implements UserDetailsService {
         }
         return new CurrentUser(user.getUsername(), user.getPassword(), grantedAuthorities, user);
     }
-
-
 }
