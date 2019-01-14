@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import pl.coderslab.goodhands.Service.FoundationService;
 import pl.coderslab.goodhands.Service.Service;
 import pl.coderslab.goodhands.foundation.Foundation;
+import pl.coderslab.goodhands.gift.Cl;
 import pl.coderslab.goodhands.role.Role;
 import pl.coderslab.goodhands.Service.RoleService;
 import pl.coderslab.goodhands.user.CurrentUser;
@@ -161,7 +162,9 @@ public class AdminController {
     @GetMapping("/admin/foundationAdd")
     public String foundationAdd (Model model) {
         Foundation foundation = new Foundation();
+        List<String> regions = Cl.region();
         model.addAttribute("foundation", foundation);
+        model.addAttribute("regions", regions);
         return "/foundation/foundationAdd";
     }
     @PostMapping("/admin/foundationAdd")
@@ -186,7 +189,9 @@ public class AdminController {
     @GetMapping ("/admin/editFoundation/{id}")
     public String foundationEdit (@PathVariable Long id, Model model) {
         Foundation foundation = foundationService.findById(id);
+        List<String> regions = Cl.region();
         model.addAttribute("foundation", foundation);
+        model.addAttribute("regions", regions);
         return "/foundation/foundationAdd";
     }
     @GetMapping ("/admin/deleteFoundation/{id}")

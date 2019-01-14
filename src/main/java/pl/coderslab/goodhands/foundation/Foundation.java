@@ -7,7 +7,6 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.util.Set;
 
 @Data
 @Entity
@@ -26,10 +25,7 @@ public class Foundation {
     @Column(name = "email", unique = true)
     private String email;
 
+    private String region;
     private String address;
     private String phone;
-
-    @OneToMany (fetch = FetchType.EAGER, mappedBy = "user")
-    private Set<Gift> gifts;
-
 }

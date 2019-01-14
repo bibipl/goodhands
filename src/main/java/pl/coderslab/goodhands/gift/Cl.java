@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 // Class to define regions, items etc. - fixed list of string
 public class Cl {
-    public String region (int pos) {
+    public static List<String> region () {
        List<String> regions = Arrays.asList(
         "dolnośląskie",
         "kujawsko-pomorskie",
@@ -22,18 +22,17 @@ public class Cl {
         "warmińsko-mazurskie",
         "wielkopolskie",
         "zachodniopomorskie");
-        if (pos < regions.size() && pos >0) return regions.get(pos);
-        else return "";
+         return regions;
+
     }
 
-    public String item (int pos) {
+    public static List<String> item () {
      List<String> items = Arrays.asList(
             "ubrania, które nadają się do ponownego użycia",
             "ubrania do wyrzucenia",
             "zabawki",
             "książki",
             "inne");
-     if (pos < items.size() && pos >0) return items.get(pos);
-     else return "";
+     return items;
     }
 }
