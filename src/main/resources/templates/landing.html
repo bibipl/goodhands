@@ -13,21 +13,22 @@
 <body class="start">
 <!--<p th:if="${currentUser}" class="btn btn-info" th:text="'Jesteś zalogowany jako: ' + ${currentUser.username}"></p>
 <p th:unless="${currentUser}" class="btn btn-info" th:text="'Nie jesteś zalogowany'"></p>-->
-<table class="usermenutable">
+<!--<table class="usermenutable">
     <tr>
         <td class="usermenu60"></td>
         <td class="usermenu15">
             <a th:href="@{/login}" class="btn btn-success full">Zaloguj</a>
         </td>
-        <td class="usermenu10">
+        <td class="usermenu15">
             <a th:href="@{/register}" class="btn btn-primary full">Załóż konto</a>
         </td>
         <td class="usermenu10"></td>
     </tr>
-</table>
+</table>-->
 <table class="usermenutable">
     <tr>
-        <td class="usermenu60"></td>
+        <td class="usermenu30"></td>
+
         <td class="usermenu30">
             <a th:href="@{/}" class="btn btn-secondary">Start</a>
             <a th:href="@{/}" class="btn btn-secondary">O co chodzi</a>
@@ -36,6 +37,13 @@
             <a th:href="@{/}" class="btn btn-secondary">Kontakt</a>
         </td>
         <td class="usermenu10"></td>
+        <td class="usermenu15">
+            <a th:href="@{/login}" class="btn btn-success full">Zaloguj</a>
+        </td>
+        <td class="usermenu15">
+            <a th:href="@{/register}" class="btn btn-primary full">Załóż konto</a>
+        </td>
+
     </tr>
 </table>
 

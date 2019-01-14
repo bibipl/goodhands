@@ -1,5 +1,7 @@
 package pl.coderslab.goodhands.user;
 
+import lombok.Data;
+import pl.coderslab.goodhands.gift.Gift;
 import pl.coderslab.goodhands.role.Role;
 
 import javax.persistence.*;
