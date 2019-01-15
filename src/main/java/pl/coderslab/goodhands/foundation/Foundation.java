@@ -1,8 +1,6 @@
 package pl.coderslab.goodhands.foundation;
 
 import lombok.Data;
-import pl.coderslab.goodhands.gift.Gift;
-
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;

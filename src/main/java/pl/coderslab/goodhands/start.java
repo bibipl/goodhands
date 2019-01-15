@@ -42,8 +42,9 @@ public class start {
 
 
 
-/* In case we lost admin in database.
-//set admin
+/* In case we lost admin in database, run with the below commented code to create first admin
+//set admin - after that you have 1 user/admin : name: user, password 123
+
         Role role = new Role ();
         Role role1 = new Role ();
         role.setName("ROLE_ADMIN");
@@ -54,4 +55,6 @@ public class start {
         user.setUsername("user");
         user.setPassword("123");
         user.setEnabled(1);
-        userService.saveUser(user);*/
+        userService.saveUser(user);
+
+        */
