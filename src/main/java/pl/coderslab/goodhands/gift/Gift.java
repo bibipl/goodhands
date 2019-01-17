@@ -16,8 +16,10 @@ public class Gift {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private int numberOfBags;
+    private String numberOfBags;
     private String content; // to choose form item List
+    private String subContent1;
+    private String subContent2;
 
     @ManyToOne (fetch = FetchType.EAGER)
     private User user;
@@ -34,6 +36,6 @@ public class Gift {
     private LocalTime time;
     private String comment;
 
-    private boolean completed = false;
+    private int completed = 0; // 0 empty, 1 - finished 1st stage, 2 - finfished 2nd stage etc.. 9- completed
     private boolean archieve = false;
 }

@@ -9,11 +9,11 @@ import java.util.List;
 
 @Service
 @Transactional
-public class FoundatiionServiceImpl implements FoundationService {
+public class FoundationServiceImpl implements FoundationService {
 
     private final FoundationRepository foundationRepository;
 
-    public FoundatiionServiceImpl(FoundationRepository foundationRepository) {
+    public FoundationServiceImpl(FoundationRepository foundationRepository) {
         this.foundationRepository = foundationRepository;
     }
 

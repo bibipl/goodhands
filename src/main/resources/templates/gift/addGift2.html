@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>CO ODDAJESZ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/my.css}" rel="stylesheet"/>
+</head>
+<body>
+<div class="container">
+    <table class="usermenutable">
+        <tr>
+            <td style="width: 100%">
+                <span>
+                    <a class="btn btn-secondary usermenu"  th:href="@{'/'}">
+                       PRZERWIJ I WRÓĆ NA STRONĘ GŁÓWNĄ
+                    </a>
+                </span>
+            </td>
+        </tr>
+    </table>
+    <br/><br/>
+    <table class="usermenutable">
+        <tr>
+            <td class="steps14"></td>
+            <td class="steps8"><span class="btn btn-success usermenu">1</span></td>
+            <td class="steps8"></td>
+            <td class="steps8"><span class="btn btn-info usermenu">2</span></td>
+            <td class="steps8"></td>
+            <td class="steps8"><span class="btn btn-secondary usermenu">3</span></td>
+            <td class="steps8"></td>
+            <td class="steps8"><span class="btn btn-secondary usermenu">4</span></td>
+            <td class="steps8"></td>
+            <td class="steps8"><span class="btn btn-secondary usermenu">V</span></td>
+            <td class="steps14"></td>
+        </tr>
+    </table>
+    <form th:action="@{/user/addGift21}" th:object="${gift}" method="post">
+        <div class="container">
+            <br><br>
+            <div class="card" style="width: 100%">
+                <div class="card-body">
+                    <input type="hidden" th:field="*{id}" name="id"/>
+                    <input type="hidden" th:field="*{content}" name="content"/>
+                    <input type="hidden" th:field="*{subContent1}" name="subContent1"/>
+                    <input type="hidden" th:field="*{subContent2}" name="subContent2"/>
+                    <p>Podaj liczbę 60 l worków, w które spakowałeś/aś rzeczy</p>
+                    <label for="bag">Liczba 60 l worków: </label>
+                    <select th:field="*{numberOfBags}" class="form-control"id="bag">
+                        <option th:each="item : ${bags}" th:value="${item}" th:text="${item}"></option>
+                    </select>
+                </div>
+                <div><input type="submit" class="btn btn-primary" style="width: 100%" value="DALEJ -> KROK 3"/></div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+</body>
+</html>

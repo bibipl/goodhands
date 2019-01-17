@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Dary</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/my.css}" rel="stylesheet"/>
+</head>
+<body class="about">
+<br/><br/>
+<div class="container">
+    <table class="usermenutable" th th:unless="${isAdmin}">
+        <tr>
+            <td style="width: 100%">
+                    <span>
+                        <a class="btn btn-info usermenu"  th:href="@{'/'}">
+                           POWRÓT NA STRONĘ GŁÓWNĄ
+                        </a>
+                    </span>
+            </td>
+
+        </tr>
+    </table>
+    <table class="usermenutable" th:if="${isAdmin}">
+        <tr>
+            <td style="width: 80%">
+                <span>
+                    <a class="btn btn-info usermenu"  th:href="@{'/'}">
+                       MOJA STRONA GŁÓWNA
+                    </a>
+                </span>
+            </td>
+            <td style="width: 20%">
+                <span>
+                    <a href="/admin/foundationAdd" class="btn btn-success usermenu"> + </a>
+                </span>
+            </td>
+        </tr>
+    </table>
+
+    <table class="usermenutable" th:if="${isAdmin}">
+        <tr>
+            <td class="usermenutd4">
+                <span>
+                    <a class="btn btn-secondary usermenu"  th:href="@{|/admin/roles/ROLE_ADMIN|}">
+                        ADMINISTRATORZY
+                    </a>
+                </span>
+            </td>
+            <td class="usermenutd4">
+                <span>
+                    <a class="btn btn-secondary usermenu" th:href="@{|/admin/roles/ROLE_USER|} ">
+                        UŻYTKOWNICY
+                    </a>
+                </span>
+            </td>
+            <td class="usermenutd4">
+                <span>
+                    <a class="btn btn-secondary usermenu" th:href="@{'/'} ">
+                        INSTYTUCJE
+                    </a>
+                </span>
+            </td>
+            <td class="usermenutd4">
+                    <span>
+                        <a class="btn btn-secondary usermenu" th:href="@{'/'} ">
+                            DARY
+                        </a>
+                    </span>
+            </td>
+        </tr>
+    </table>
+    <div class="alert alert-success" role="alert">
+        <div>
+            <h3>LISTA DARÓW</h3>
+        </div>
+        <table class="usermenutable">
+            <thead>
+            <tr>
+                <th class="usermenu20 btn-secondary"><span>FUNDACJA</span></th>
+                <th class="usermenu20 btn-secondary"><span>WORKI</span></th>
+                <th class="usermenu20 btn-secondary"><span>ZAWARTOŚĆ</span></th>
+                <th class="usermenu30 btn-secondary"><span>DATA</span></th>
+                <th class="usermanu5 btn-secondary"><span>SZCZEGÓŁY</span></th>
+                <th class="usermenu5 btn-secondary"><span>USUŃ</span></th>
+            </tr>
+            </thead>
+            <th:block th:each="gift : ${gifts}">
+                <tr>
+                    <td class="usermenu20 btn-secondary" th:text="${gift.foundation.name}"></span></td>
+                    <td class="usermenu20 btn-secondary" th:text="${gift.numberOfBags}"></td>
+                    <td class="usermenu20 btn-secondary" th:text="${gift.content}"></td>
+                    <td class="usermenu30 btn-secondary" th:text="${gift.date}"></td>
+                    <td class="usermenu5 btn-secondary"><a class="btn btn-warning" th:href="@{/user/gift}">EDYT</a></td>
+                    <td class="usermenu5 btn-secondary"><a class="btn btn-danger" th:href="@{/user/gift}">USUŃ</a></td>
+                </tr>
+            </th:block>
+        </table>
+    </div>
+    <table class="usermenutable">
+        <tr>
+            <td style="width: 100%">
+                    <span>
+                        <a class="btn btn-info usermenu"  th:href="@{'/'}">
+                           POWRÓT NA STRONĘ GŁÓWNĄ
+                        </a>
+                    </span>
+            </td>
+
+        </tr>
+    </table>
+</div>
+</body>
+</html>

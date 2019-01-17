@@ -50,25 +50,27 @@
             </td>
             <td class="usermenutd3">
                     <span>
-                        <a class="btn btn-secondary usermenu" th:href="@{'/'} ">
+                        <a class="btn btn-secondary usermenu" th:href="@{'/user/gifts'} ">
                             MOJE ZBIÓRKI
                         </a>
                     </span>
             </td>
         </tr>
     </table>
-
-    <div class="alert alert-primary" role="alert">
-        <div th:switch="${currentUser.enabled}">
-            <p th:case="'1'" th:text="'ZALOGOWANY - ' + ${currentUser.username} + ' - AKTYWNY'"></p>
-            <p th:case="'0'" th:text="'ZALOGOWANY - ' + ${currentUser.username} + ' - NIEAKTYWNY'"></p>
-        </div>
-    </div>
-    <div class="alert alert-secondary" role="alert">
-        <ul>
-            <li th:each="role: ${currentUser.roles}" th:text="${role.name}"></li>
-        </ul>
-    </div>
+    <br/>
+        <span>
+            <a class="btn btn-success usermenu" th:href="@{'/user/addGift'} ">
+                ODDAJ RZECZY
+            </a>
+        </span>
+    <br/>
+    <br/>
+        <span>
+            <a class="btn btn-warning usermenu" th:href="@{'/'} ">
+                ZORGANIZUJ ZBIÓRKĘ
+            </a>
+        </span>
+    <br/>
     <br/>
     <table class="usermenutable">
         <tr>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>CO ODDAJESZ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/my.css}" rel="stylesheet"/>
+</head>
+<body>
+<div class="container">
+    <table class="usermenutable">
+        <tr>
+            <td style="width: 100%">
+                <span>
+                    <a class="btn btn-secondary usermenu"  th:href="@{'/'}">
+                       PRZERWIJ I WRÓĆ NA STRONĘ GŁÓWNĄ
+                    </a>
+                </span>
+            </td>
+        </tr>
+    </table>
+    <br/><br/>
+    <table class="usermenutable">
+        <tr>
+            <td class="steps14"></td>
+            <td class="steps8"><span class="btn btn-info usermenu">1</span></td>
+            <td class="steps8"></td>
+            <td class="steps8"><span class="btn btn-secondary usermenu">2</span></td>
+            <td class="steps8"></td>
+            <td class="steps8"><span class="btn btn-secondary usermenu">3</span></td>
+            <td class="steps8"></td>
+            <td class="steps8"><span class="btn btn-secondary usermenu">4</span></td>
+            <td class="steps8"></td>
+            <td class="steps8"><span class="btn btn-secondary usermenu">V</span></td>
+            <td class="steps14"></td>
+        </tr>
+    </table>
+    <form th:action="@{/user/addGift2}" th:object="${gift}" method="post">
+        <div class="container">
+            <br><br>
+            <div class="card" style="width: 100%">
+                <div class="card-body">
+                    <input type="hidden" th:field="*{id}" name="id"/>
+                    <input type="hidden" th:field="*{content}" name="content"/>
+                    <p>CO CHCESZ ODDAĆ ?</p>
+                    <p th:text="${gift.content}"></p>
+                </div>
+                <div th:if="${selected} == 1">
+                    <p>DLA KOGO SĄ TE RZECZY ?</p>
+                    <select th:field="*{subContent1}" class="form-control">
+                        <option th:each="item : ${sub1}" th:value="${item}" th:text="${item}"></option>
+                    </select>
+                    <p>NA JAKĄ PORĘ ROKU SĄ TE RZECZY ?</p>
+                    <select th:field="*{subContent2}" class="form-control">
+                        <option th:each="item : ${sub2}" th:value="${item}" th:text="${item}"></option>
+                    </select>
+                </div>
+                <div th:if="${selected} == 2">
+                </div>
+                <div th:if="${selected} == 3">
+                    <p>DLA KOGO SĄ TE ZABAWKI ?</p>
+                    <select th:field="*{subContent1}" class="form-control">
+                        <option th:each="item : ${sub1}" th:value="${item}" th:text="${item}"></option>
+                    </select>
+                    <p>NA JAKI WIEK SĄ ODPOWIEDNIE TE ZABAWKI ?</p>
+                    <select th:field="*{subContent2}" class="form-control">
+                        <option th:each="item : ${sub2}" th:value="${item}" th:text="${item}"></option>
+                    </select>
+                </div>
+                <div th:if="${selected} == 4">
+                    <p>DLA KOGO SĄ TE KSIĄŻKI ?</p>
+                    <select th:field="*{subContent1}" class="form-control">
+                        <option th:each="item : ${sub1}" th:value="${item}" th:text="${item}"></option>
+                    </select>
+                    <input type="hidden" th:field="*{subContent2}" name="subContent2"/>
+                </div>
+                <div th:if="${selected} == 5">
+                    <p>CO TAKIEGO PRZEKAZUJESZ ?</p>
+                    <textarea class="form-control" rows="4" th:field="*{subContent1}" name="subContent1"/>
+                    <input type="hidden" th:field="*{subContent2}" name="subContent2"/>
+                </div>
+
+                <div><input type="submit" class="btn btn-primary" style="width: 100%" value="dalej -> KROK 2"/></div>
+            </div>
+        </div>
+</form>
+</div>
+</body>
+</html>
