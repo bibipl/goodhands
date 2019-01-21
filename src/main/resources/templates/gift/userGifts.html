@@ -58,14 +58,14 @@
             </td>
             <td class="usermenutd4">
                 <span>
-                    <a class="btn btn-secondary usermenu" th:href="@{'/'} ">
+                    <a class="btn btn-secondary usermenu" th:href="@{'/foundation'} ">
                         INSTYTUCJE
                     </a>
                 </span>
             </td>
             <td class="usermenutd4">
                     <span>
-                        <a class="btn btn-secondary usermenu" th:href="@{'/'} ">
+                        <a class="btn btn-secondary usermenu" th:href="@{'/admin/allGifts'} ">
                             DARY
                         </a>
                     </span>
@@ -93,8 +93,8 @@
                     <td class="usermenu20 btn-secondary" th:text="${gift.numberOfBags}"></td>
                     <td class="usermenu20 btn-secondary" th:text="${gift.content}"></td>
                     <td class="usermenu30 btn-secondary" th:text="${gift.date}"></td>
-                    <td class="usermenu5 btn-secondary"><a class="btn btn-warning" th:href="@{/user/gift}">EDYT</a></td>
-                    <td class="usermenu5 btn-secondary"><a class="btn btn-danger" th:href="@{/user/gift}">USUŃ</a></td>
+                    <td class="usermenu5 btn-secondary"><a class="btn btn-warning" th:href="@{/user/gift}">SZCZ</a></td>
+                    <td class="usermenu5 btn-secondary"><a class="btn btn-danger" th:href="@{/user/gift}" style="text-align: center">USUŃ</a></td>
                 </tr>
             </th:block>
         </table>

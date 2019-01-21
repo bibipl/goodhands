@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>SKĄD ODEBRAĆ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/my.css}" rel="stylesheet"/>
+</head>
+<body>
+<div class="container">
+    <table class="usermenutable">
+        <tr>
+            <td style="width: 100%">
+                <span>
+                    <a class="btn btn-secondary usermenu"  th:href="@{'/'}">
+                       PRZERWIJ I WRÓĆ NA STRONĘ GŁÓWNĄ
+                    </a>
+                </span>
+            </td>
+        </tr>
+    </table>
+    <br/><br/>
+    <table class="usermenutable">
+        <tr>
+            <td class="steps14"></td>
+            <td class="steps8"><span class="btn btn-success usermenu">1</span></td>
+            <td class="steps8"></td>
+            <td class="steps8"><span class="btn btn-success usermenu">2</span></td>
+            <td class="steps8"></td>
+            <td class="steps8"><span class="btn btn-success usermenu">3</span></td>
+            <td class="steps8"></td>
+            <td class="steps8"><span class="btn btn-success usermenu">4</span></td>
+            <td class="steps8"></td>
+            <td class="steps8"><span class="btn btn-info usermenu">V</span></td>
+            <td class="steps14"></td>
+        </tr>
+    </table>
+    <form th:action="@{/user/addGiftS}" th:object="${gift}" method="post">
+        <div class="container">
+            <br><br>
+            <div class="card" style="width: 100%">
+                <div class="card-body">
+                    <h3>Podsumowanie Twojej darowizny</h3>
+                    <h2>Oddajesz</h2>
+                    <input type="hidden" th:field="*{id}" name="id"/>
+                    <input type="hidden" th:field="*{comment}" name="comment"/>
+                    <input type="hidden" th:field="*{content}" name="content"/>
+                    <input type="hidden" th:field="*{subContent1}" name="subContent1"/>
+                    <input type="hidden" th:field="*{subContent2}" name="subContent2"/>
+                    <input type="hidden" th:field="*{numberOfBags}" name="numberOfBags"/>
+                    <input type="hidden" th:field="*{user.id}" name="user.id"/>
+                    <input type="hidden" th:field="*{foundation.id}" name="foundation.id"/>
+                    <input type="hidden" th:field="*{completed}" name="completed"/>
+                    <input type="hidden" th:field="*{street}" name="street"/>
+                    <input type="hidden" th:field="*{town}" name="town"/>
+                    <input type="hidden" th:field="*{postal}" name="postal"/>
+                    <input type="hidden" th:field="*{phone}" name="phone"/>
+                    <input type="hidden" th:field="*{date}" name="date"/>
+                    <input type="hidden" th:field="*{time}" name="time"/>
+                    <div th:if="${gift.numberOfBags} == 1"><span th:text="${gift.numberOfBags} + ' worek ' + ${gift.content}"></span></div>
+                    <div th:if="${gift.numberOfBags} > 1 and ${gift.numberOfBags} < 5"><span th:text="${gift.numberOfBags} + ' worki ' + ${gift.content}"></span></div>
+                    <div th:if="${gift.numberOfBags} > 4 or ${gift.numberOfBags} == 0"><span th:text="${gift.numberOfBags} + ' worków ' + ${gift.content}"></span></div>
+
+                    <p th:text="'ULICA: '  + ${gift.street}"/></br>
+                    <p th:text="'MIASTO: ' + ${gift.town}"/></br>
+                    <p th:text="'KOD POCZTOWY: ' + ${gift.postal}"/></br>
+                    <p th:text="'NR TELEFONU: ' + ${gift.phone}"/></br>
+                </div>
+                <br/><br/>
+                <div class="card-body">
+                    <p>Termin odbioru</p>
+                    <p th:text="'DATA: '  + ${gift.date}"/></br>
+                    <p th:text="'GODZINA: '  + ${gift.time}"/></br>
+                    <p th:text="'UWAGI DLA KURIERA: '  + ${gift.comment}"/></br>
+                </div>
+
+                <div><input type="submit" class="btn btn-primary" style="width: 100%" value="POTWIERDZAM"/></div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+</body>
+</html>

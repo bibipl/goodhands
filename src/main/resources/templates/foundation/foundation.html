@@ -9,6 +9,26 @@
     <link th:href="@{/css/my.css}" rel="stylesheet"/>
 </head>
 <body class="about">
+<table class="usermenutable">
+    <tr>
+        <td class="usermenu30"></td>
+
+        <td class="usermenu30">
+            <a th:href="@{/}" class="btn btn-secondary">Start</a>
+            <a th:href="@{/whatsOn}" class="btn btn-secondary">O co chodzi</a>
+            <a th:href="@{/aboutUs}" class="btn btn-secondary">O nas</a>
+            <a th:href="@{/foundation}" class="btn btn-secondary">Fundacje i organizacje</a>
+            <a th:href="@{/contact}" class="btn btn-secondary">Kontakt</a>
+        </td>
+        <td class="usermenu10"></td>
+        <td class="usermenu15">
+            <a th:href="@{/login}" class="btn btn-success full">Zaloguj</a>
+        </td>
+        <td class="usermenu15">
+            <a th:href="@{/register}" class="btn btn-primary full">Załóż konto</a>
+        </td>
+    </tr>
+</table>
 <br/><br/>
 <div class="container">
     <table class="usermenutable" th th:unless="${isAdmin}">
@@ -83,8 +103,8 @@
                     <th class="usermenu20 btn-secondary"><span>EMAIL</span></th>
                     <th class="usermenu20 btn-secondary"><span>TEL</span></th>
                     <th class="usermenu30 btn-secondary"><span>ADRES</span></th>
-                    <th class="usermanu5 btn-secondary"><span>EDYTUJ</span></th>
-                    <th class="usermenu5 btn-secondary"><span>USUŃ</span></th>
+                    <th th:if="${isAdmin}" class="usermanu5 btn-secondary"><span>EDYTUJ</span></th>
+                    <th th:if="${isAdmin}" class="usermenu5 btn-secondary"><span>USUŃ</span></th>
                 </tr>
             </thead>
             <th:block th:each="foundation : ${foundations}">
@@ -93,8 +113,8 @@
                     <td class="usermenu20 btn-secondary" th:text="${foundation.email}"></td>
                     <td class="usermenu20 btn-secondary" th:text="${foundation.phone}"></td>
                     <td class="usermenu30 btn-secondary" th:text="${foundation.address}"></td>
-                    <td class="usermenu5 btn-secondary"><a class="btn btn-warning" th:href="@{|/admin/editFoundation/${foundation.id}|}">EDYT</a></td>
-                    <td class="usermenu5 btn-secondary"><a class="btn btn-danger" th:href="@{|/admin/deleteFoundation/${foundation.id}|}">USUŃ</a></td>
+                    <td th:if="${isAdmin}" class="usermenu5 btn-secondary"><a class="btn btn-warning" th:href="@{|/admin/editFoundation/${foundation.id}|}">EDYT</a></td>
+                    <td th:if="${isAdmin}" class="usermenu5 btn-secondary"><a class="btn btn-danger" th:href="@{|/admin/deleteFoundation/${foundation.id}|}">USUŃ</a></td>
                 </tr>
             </th:block>
         </table>

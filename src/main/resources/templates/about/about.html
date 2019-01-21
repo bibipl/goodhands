@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pl">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="pl">
+<head>
+    <title>O nas</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/my.css}" rel="stylesheet"/>
+</head>
+<body class="about">
+    <table class="usermenutable">
+        <tr>
+            <td class="usermenu30"></td>
+
+            <td class="usermenu30">
+                <a th:href="@{/}" class="btn btn-secondary">Start</a>
+                <a th:href="@{/whatsOn}" class="btn btn-secondary">O co chodzi</a>
+                <a th:href="@{/aboutUs}" class="btn btn-secondary">O nas</a>
+                <a th:href="@{/foundation}" class="btn btn-secondary">Fundacje i organizacje</a>
+                <a th:href="@{/contact}" class="btn btn-secondary">Kontakt</a>
+            </td>
+            <td class="usermenu10"></td>
+            <td class="usermenu15">
+                <a th:href="@{/login}" class="btn btn-success full">Zaloguj</a>
+            </td>
+            <td class="usermenu15">
+                <a th:href="@{/register}" class="btn btn-primary full">Załóż konto</a>
+            </td>
+        </tr>
+    </table>
+    <p>To my. Na razie więcej o nas nie wiadomo.</p>
+    <p>To my. Na razie więcej o nas nie wiadomo.</p>
+    <p>To my. Na razie więcej o nas nie wiadomo.</p>
+</body>
+</html>

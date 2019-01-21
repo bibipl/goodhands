@@ -7,8 +7,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import pl.coderslab.goodhands.Service.FoundationService;
 import pl.coderslab.goodhands.Service.GiftService;
 import pl.coderslab.goodhands.Service.UserService;
+import pl.coderslab.goodhands.foundation.Foundation;
 import pl.coderslab.goodhands.gift.Cl;
 import pl.coderslab.goodhands.gift.Gift;
 import pl.coderslab.goodhands.user.CurrentUser;
@@ -24,6 +26,8 @@ public class GiftController {
     UserService userService;
     @Autowired
     GiftService giftService;
+    @Autowired
+    FoundationService foundationService;
 
     @GetMapping("/user/gifts")
     public String showGifts(@AuthenticationPrincipal CurrentUser customUser, Model model) {
@@ -45,6 +49,7 @@ public class GiftController {
         return "/gift/addGift1";
     }
     @PostMapping("user/addGift")
+    //we want "what"
     public String addGiftAction (@AuthenticationPrincipal CurrentUser customUser, @ModelAttribute Gift gift, Model model){
         User user = customUser.getUser();
         List<String> items = Cl.item();
@@ -90,6 +95,7 @@ public class GiftController {
     }
 
     @PostMapping("/user/addGift2")
+    //here we have "what" and we want "how many bags"
     public String addGift2(@AuthenticationPrincipal CurrentUser customUser, @ModelAttribute Gift gift, Model model) {
         User user = customUser.getUser();
         List<String> bags = Cl.numberOfBags();
@@ -99,10 +105,49 @@ public class GiftController {
         return"/gift/addGift2";
     }
 
-    @PostMapping("/user/addGift21")
-    public String addGift21(@AuthenticationPrincipal CurrentUser customUser, @ModelAttribute Gift gift, Model model) {
+    @PostMapping("/user/addGift3")
+    //here we have "what" and "how many", we want to know "foundation"
+    public String addGift3(@AuthenticationPrincipal CurrentUser customUser, @ModelAttribute Gift gift, Model model) {
+        User user = customUser.getUser();
+        List<String> regions = Cl.region();
+        List<Foundation> foundations = foundationService.findAll();
+        model.addAttribute("foundations", foundations);
+        model.addAttribute("gift", gift);
+        model.addAttribute("regions", regions); // so fat not needed - to filter later by regions
+        return"/gift/addGift3";
+    }
 
-        return"/gift/addGift2";
+    @PostMapping("/user/addGift31")
+    //here we have "what" and "how many", we want to know "foundation"
+    public String addGift31(@AuthenticationPrincipal CurrentUser customUser, @ModelAttribute Gift gift, Model model) {
+        User user = customUser.getUser();
+        Foundation foundation = foundationService.findById(gift.getFoundation().getId());
+        gift.setFoundation(foundation);
+        gift.setUser(user);
+        gift.setCompleted(3);
+        model.addAttribute("gift", gift);
+        return"/gift/addGift4";
+    }
+
+    @PostMapping("/user/addGift4")
+    //here we have "what" and "how many", we want to know "foundation"
+    public String addGift4(@AuthenticationPrincipal CurrentUser customUser, @ModelAttribute Gift gift, Model model) {
+        User user = customUser.getUser();
+        Foundation foundation = foundationService.findById(gift.getFoundation().getId());
+        gift.setFoundation(foundation);
+        gift.setUser(user);
+        gift.setCompleted(4);
+        model.addAttribute("gift", gift);
+        return"/gift/addGiftSummary";
+    }
+
+    @PostMapping("/user/addGiftS")
+    //here we have "what" and "how many", we want to know "foundation"
+    public String addGiftS(@AuthenticationPrincipal CurrentUser customUser, @ModelAttribute Gift gift, Model model) {
+        User user = customUser.getUser();
+        gift.setCompleted(5);
+        giftService.save(gift);
+        return"redirect:/user/";
     }
 
 }

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>SKĄD ODEBRAĆ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/my.css}" rel="stylesheet"/>
+</head>
+<body>
+<div class="container">
+    <table class="usermenutable">
+        <tr>
+            <td style="width: 100%">
+                <span>
+                    <a class="btn btn-secondary usermenu"  th:href="@{'/'}">
+                       PRZERWIJ I WRÓĆ NA STRONĘ GŁÓWNĄ
+                    </a>
+                </span>
+            </td>
+        </tr>
+    </table>
+    <br/><br/>
+    <table class="usermenutable">
+        <tr>
+            <td class="steps14"></td>
+            <td class="steps8"><span class="btn btn-success usermenu">1</span></td>
+            <td class="steps8"></td>
+            <td class="steps8"><span class="btn btn-success usermenu">2</span></td>
+            <td class="steps8"></td>
+            <td class="steps8"><span class="btn btn-success usermenu">3</span></td>
+            <td class="steps8"></td>
+            <td class="steps8"><span class="btn btn-info usermenu">4</span></td>
+            <td class="steps8"></td>
+            <td class="steps8"><span class="btn btn-secondary usermenu">V</span></td>
+            <td class="steps14"></td>
+        </tr>
+    </table>
+    <form th:action="@{/user/addGift4}" th:object="${gift}" method="post">
+        <div class="container">
+            <br><br>
+            <div class="card" style="width: 100%">
+                <div class="card-body">
+                    <p>ADRES ODBIORU</p>
+                    <input type="hidden" th:field="*{id}" name="id"/>
+                    <input type="hidden" th:field="*{content}" name="content"/>
+                    <input type="hidden" th:field="*{subContent1}" name="subContent1"/>
+                    <input type="hidden" th:field="*{subContent2}" name="subContent2"/>
+                    <input type="hidden" th:field="*{numberOfBags}" name="numberOfBags"/>
+                    <input type="hidden" th:field="*{user.id}" name="user.id"/>
+                    <input type="hidden" th:field="*{foundation.id}" name="foundation.id"/>
+                    <input type="hidden" th:field="*{completed}" name="completed"/>
+
+                    <label for="ULICA">ULICA</label>
+                    <input id="ULICA" type="text" th:field="*{street}"/></br>
+                    <label for="MIASTO">MIASTO</label>
+                    <input id="MIASTO" type="text" th:field="*{town}"/></br>
+                    <label for="KOD">KOD POCZTOWY</label>
+                    <input id="KOD" type="text" th:field="*{postal}"></br>
+                    <label for="TEL">NR TELEFONU</label>
+                    <input id="TEL" type="text" th:field="*{phone}"/></br>
+                </div>
+                <br/><br/>
+                <div class="card-body">
+                    <p>Termin odbioru</p>
+                    <label for="DATA">DATA</label>
+                    <input id="DATA" type="date" th:value="*{date}" th:field="*{date}"/></br>
+                    <label for="GODZINA">GODZINA</label>
+                    <input id="GODZINA" type="time" th:value="*{time}" th:field="*{time}"/></br>
+                    <label for="UWAGI">UWAGI DLA KURIERA</label>
+                    <textarea id="UWAGI" class="form-control" rows="4" th:field="*{comment}" name="comment"/></br>
+                </div>
+
+                <div><input type="submit" class="btn btn-primary" style="width: 100%" value="DALEJ -> PODSUMOWANIE ->"/></div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+</body>
+</html>

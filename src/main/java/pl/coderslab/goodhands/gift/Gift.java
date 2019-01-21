@@ -1,6 +1,7 @@
 package pl.coderslab.goodhands.gift;
 
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 import pl.coderslab.goodhands.foundation.Foundation;
 import pl.coderslab.goodhands.user.User;
 
@@ -32,6 +33,7 @@ public class Gift {
     private String postal;
     private String phone;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
     private LocalTime time;
     private String comment;
