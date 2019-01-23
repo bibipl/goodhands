@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import pl.coderslab.goodhands.Service.EmailSender;
 import pl.coderslab.goodhands.role.Role;
 import pl.coderslab.goodhands.user.CurrentUser;
 import pl.coderslab.goodhands.user.User;
@@ -18,6 +19,8 @@ import pl.coderslab.goodhands.Service.UserService;
 public class UserController {
     @Autowired
     UserService userService;
+    @Autowired
+    EmailSender emailSender;
 
     @GetMapping("/user")
     public String iAmUser (@AuthenticationPrincipal CurrentUser customUser, Model model) {
@@ -104,5 +107,11 @@ public class UserController {
             }
         }
         return "landing";
+    }
+    @GetMapping ("user/email")
+    public String userEmail (@AuthenticationPrincipal CurrentUser customUser){
+        User user = customUser.getUser();
+        emailSender.sendEmail(user.getEmail(),"mail na żądanie","Po wciśnięciu przycisku wysłałem email. Pozdro. Goodhands.");
+     return "redirect:/user";
     }
 }
