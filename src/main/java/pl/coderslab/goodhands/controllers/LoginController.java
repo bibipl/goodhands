@@ -29,7 +29,6 @@ public class LoginController {
 
     @GetMapping("/login")
     public String login () {
-
         return "user/login";
     }
 
@@ -38,25 +37,25 @@ public class LoginController {
         if (customUser != null) {
             User entityUser = customUser.getUser();
         model.addAttribute("currentUser", entityUser);
-        return "user/logout";
+        return "/user/logout";
         }
-        return "landing";
+        return "/landing";
     }
 
     @GetMapping("/register")
     public String register(Model model) {
             User user = new User();
             model.addAttribute("user", user);
-        return "user/register";
+        return "/user/register";
     }
 
     @PostMapping("/register")
     public String registerAction (@ModelAttribute @Valid User user, BindingResult result) {
         if (result.hasErrors()) {
-            return "user/register";
+            return "/user/register";
         }
         else if (!user.getPassword().equals(user.getPasswordCheck())) {
-            return"user/register";
+            return"/user/register";
         }
 
         User userCheckEmail = userService.findByEmail(user.getEmail());
@@ -67,9 +66,10 @@ public class LoginController {
             Set<Role> allRoles = new HashSet<>();
             allRoles.add(role);
             user.setRoles(allRoles);
+            user.setEnabled(0);
             userService.saveUser(user);
-            return "redirect:/login";
+            return "user/login";
         }
-        return "user/register";
+        return "/user/register";
     }
 }
