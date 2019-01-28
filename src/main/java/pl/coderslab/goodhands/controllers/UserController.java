@@ -25,9 +25,12 @@ public class UserController {
     @GetMapping("/user")
     public String iAmUser (@AuthenticationPrincipal CurrentUser customUser, Model model) {
         User entityUser = userService.findById(customUser.getUser().getId());
-        if (entityUser.getEnabled() == 0) {
+        if (entityUser == null) {
             return "redirect:/regEmail";
+        } else if (entityUser.getEnabled() == 0) {
+            return "redirect:/logout";
         }
+
         model.addAttribute("currentUser", entityUser);
         return "user/user";
     }

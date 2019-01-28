@@ -12,17 +12,11 @@
     <a th:href="@{/}" class="btn btn-info" style="width: 100%">STRONA GŁÓWNA</a>
     <br/><br/>
     <div class="alert alert-secondary" role="alert">
-        <h2 th:text="|ID: ${currentUser.id}|"></h2>
-        <h2 th:text="|NAZWA: ${currentUser.username}|"></h2>
+        <h2 th:text="${currentUser.username} + ' - nie aktywowałeś jeszcze konta.'"></h2>
         <h3></h3>
-        <h2 th:text="|STATUS: (0/1): ${currentUser.enabled}|"></h2>
-        <h2>UPRAWNIENIA</h2>
-        <ul>
-            <li th:each="role: ${currentUser.roles}" th:text="${role.name}"></li>
-        </ul>
     </div>
     <form th:action="@{/logout}" method="post">
-        <input type="submit" class="btn btn-warning" style="width: 100%" value="Wyloguj"/>
+        <input type="submit" class="btn btn-warning" style="width: 100%" value="DALEJ ->"/>
     </form>
 </div>
 
