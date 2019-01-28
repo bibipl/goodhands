@@ -90,7 +90,7 @@ public class LoginController {
             Context context = new Context();
             context.setVariable("header", "Rejestracja w serwisie Oddam w dobre ręce");
             context.setVariable("title", "Witaj " + user.getUsername() + "!");
-            context.setVariable("description", "Dziękujemy za rejestrację w naszym serwisie. Niestety jest to program napisany na zaliczenie więc nie można z niego korzystać tak naprawdę");
+            context.setVariable("description", "Dziękujemy za rejestrację w naszym serwisie. Dokoncz swoj proces rejestracji");
             context.setVariable("link","http://localhost:8080/confirm/" + token + "/" + user.getId());
             String body = templateEngine.process("templateMail", context);
             emailSender.sendEmail(user.getEmail(), "Oddam w dobre ręce - witamy !", body);
